@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from 'react'
+import React, { useContext } from 'react'
 import {
   Box,
   Flex,
@@ -28,7 +28,7 @@ import { CartContext } from '../../contexts/Cart'
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure()
-  const [state, dispatch] = useContext(CartContext)
+  const [state] = useContext(CartContext)
 
   return (
     <Box>

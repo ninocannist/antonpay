@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   Box,
   Button,
   FormControl,
-  FormErrorMessage,
-  FormHelperText,
   FormLabel,
   Input,
   Select,
@@ -12,7 +10,7 @@ import {
   Spinner,
   useToast,
 } from '@chakra-ui/react'
-import { Field, Form, Formik } from 'formik'
+import { Form, Formik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
 import { CartContext } from '../../contexts/Cart'
