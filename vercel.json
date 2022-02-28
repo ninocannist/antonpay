@@ -1,15 +1,5 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "/dist/server.js",
-      "use": "@now/node"
-    },
-    {
-      "src": "/dist/app/*",
-      "use": "@now/static"
-    }
-  ],
   "routes": [
     { "src": "/api/(.*)", "dest": "/dist/server.js" },
     { "handle": "filesystem" },
