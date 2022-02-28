@@ -11,7 +11,7 @@ export default function ProductPage() {
   const [product] = products.filter((product) => {
     return product.slug === productSlug
   })
-  const [state, dispatch] = React.useContext(CartContext)
+  const [, dispatch] = React.useContext(CartContext)
 
   return (
     <Box my={10} maxW="800px" mx="auto">

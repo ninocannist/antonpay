@@ -28,7 +28,7 @@ const CheckoutSchema = Yup.object().shape({
 
 export default function Checkout() {
   const delay: any = (ms: number) => new Promise((res) => setTimeout(res, ms))
-  const [state, dispatch] = React.useContext(CartContext)
+  const [state] = React.useContext(CartContext)
   const toast = useToast()
   return (
     <Box maxW="700px" mx="auto">

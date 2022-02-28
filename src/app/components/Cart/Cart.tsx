@@ -10,7 +10,6 @@ import {
 import React from 'react'
 import { CartContext } from '../../contexts/Cart'
 import { Link as BrowserLink } from 'react-router-dom'
-import { DeleteIcon } from '@chakra-ui/icons'
 
 export default function Cart() {
   const [state, dispatch] = React.useContext(CartContext)
