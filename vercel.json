@@ -1,8 +1,21 @@
 {
   "version": 2,
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/" },
-    { "source": "/(.*)", "destination": "/app/" }
+  "builds": [
+    {
+      "src": "/dist/server.js",
+      "use": "@now/node"
+    },
+    {
+      "src": "/dist/app/*",
+      "use": "@now/static"
+    }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/dist/server.js" },
+    { "handle": "filesystem" },
+    { "src": "/assets/(.*)", "dest": "/dist/app/assets/$1" },
+    { "src": "/(.*).(js|css|ico)", "dest": "/dist/app/$1.$2" },
+    { "src": "/(.*)", "dest": "/dist/app/index.html" }
   ],
   "headers": [
     {
