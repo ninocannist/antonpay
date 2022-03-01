@@ -1,17 +1,6 @@
-# Vite Boilerplate
+# AntonPay
 
-> Quickly bootstrap a new project with Vite Boilerplate.
-
-This boilerplate contains all the tools you need to build a modern web app with TypeScript, React, Vite, Storybook and Express.  
-You can use it to quickly bootstrap your project.
-
-ESLint, stylelint, prettier, husky and lintstaged are configured to give you a solid development experience.
-
-## Installing / Developing
-
-First, [create a repository from this template](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/creating-a-repository-from-a-template).
-
-Now you are ready to go:
+To run the project:
 
 ```shell
 npm install
