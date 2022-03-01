@@ -40,12 +40,12 @@ export default function Checkout() {
       </Text>
       <Formik
         initialValues={{
-          firstName: 'Antonino',
-          lastName: 'Cannistraci',
-          email: 'nino@nino.com',
-          address: 'Via Nino 33',
-          postcode: '22333',
-          countryCode: 'IT',
+          firstName: '',
+          lastName: '',
+          email: '',
+          address: '',
+          postcode: '',
+          countryCode: '',
         }}
         validationSchema={CheckoutSchema}
         onSubmit={async (values, { setSubmitting }) => {
@@ -117,7 +117,11 @@ export default function Checkout() {
             </FormControl>
             <FormControl my={2}>
               <FormLabel htmlFor="countryCode">Paese</FormLabel>
-              <Select id="countryCode" value={values.countryCode}>
+              <Select
+                id="countryCode"
+                value={values.countryCode}
+                onChange={handleChange}
+              >
                 <option>Seleziona paese</option>
                 <option value="IT" selected>
                   Italia
