@@ -19,59 +19,64 @@ export const reducer = (
       }
     )
   }
-  const index = existingItemIndex(state, action.product)
-  if (action.type === 'add_item') {
-    if (index > -1) {
-      const newItems = [...state.items]
-      newItems[index] = {
-        product: action.product,
-        quantity: state.items[index].quantity + 1,
+  if (action.product) {
+    const index = existingItemIndex(state, action.product)
+
+    if (action.product && action.type === 'add_item') {
+      if (index > -1) {
+        const newItems = [...state.items]
+        newItems[index] = {
+          product: action.product,
+          quantity: state.items[index].quantity + 1,
+        }
+        const newState = {
+          ...state,
+          total: state.total + action.product.price,
+          items: [...newItems],
+        }
+        return newState
+      } else {
+        const newItems = [
+          ...state.items,
+          { product: action.product, quantity: 1 },
+        ]
+        const newState = {
+          ...state,
+          total: state.total + action.product.price,
+          items: [...newItems],
+        }
+        return newState
       }
-      const newState = {
-        ...state,
-        total: state.total + action.product.price,
-        items: [...newItems],
-      }
-      return newState
-    } else {
-      const newItems = [
-        ...state.items,
-        { product: action.product, quantity: 1 },
-      ]
-      const newState = {
-        ...state,
-        total: state.total + action.product.price,
-        items: [...newItems],
-      }
-      return newState
     }
-  }
-  if (action.type === 'remove_item') {
-    if (state.items[index].quantity > 1) {
-      const newItems = [...state.items]
-      newItems[index] = {
-        product: action.product,
-        quantity: state.items[index].quantity - 1,
+    if (action.type === 'remove_item') {
+      if (state.items[index].quantity > 1) {
+        const newItems = [...state.items]
+        newItems[index] = {
+          product: action.product,
+          quantity: state.items[index].quantity - 1,
+        }
+        const newState = {
+          ...state,
+          total: state.total - action.product.price,
+          items: [...newItems],
+        }
+        return newState
+      } else {
+        const newItems = state.items
+          .slice(0, index)
+          .concat(state.items.slice(index + 1))
+        const newState = {
+          ...state,
+          total: state.total - action.product.price,
+          items: [...newItems],
+        }
+        return newState
       }
-      const newState = {
-        ...state,
-        total: state.total - action.product.price,
-        items: [...newItems],
-      }
-      return newState
-    } else {
-      const newItems = state.items
-        .slice(0, index)
-        .concat(state.items.slice(index + 1))
-      const newState = {
-        ...state,
-        total: state.total - action.product.price,
-        items: [...newItems],
-      }
-      return newState
     }
   }
   switch (action.type) {
+    case 'reset_cart':
+      return initialState
     default:
       return state
   }

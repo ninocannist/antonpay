@@ -28,7 +28,7 @@ const CheckoutSchema = Yup.object().shape({
 
 export default function Checkout() {
   const delay: any = (ms: number) => new Promise((res) => setTimeout(res, ms))
-  const [state] = React.useContext(CartContext)
+  const [state, dispatch] = React.useContext(CartContext)
   const toast = useToast()
   return (
     <Box maxW="700px" mx="auto">
@@ -54,6 +54,9 @@ export default function Checkout() {
             cart: state,
           })
           if (response.data.checkoutUrl) {
+            dispatch({
+              type: 'reset_cart',
+            })
             toast({
               title: 'Ordine elaborato',
               description: 'Verrai reindirizzato su Scalapay per pagare',

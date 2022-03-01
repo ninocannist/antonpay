@@ -51,7 +51,6 @@ router.post('/order', async (req, res) => {
         },
       })
       .then(function (response) {
-        console.log('d', response.data)
         return response
       })
       .catch(function (error) {
