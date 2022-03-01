@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { reducer, initialState, CartState } from './reducer'
 
 type CartContext = [CartState, React.Dispatch<any>]
+const localStorage = window.localStorage
 
 const localState = localStorage.getItem('state')
 const initialStateOrLocal = localState ? JSON.parse(localState) : initialState

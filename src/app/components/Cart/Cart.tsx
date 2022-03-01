@@ -47,8 +47,16 @@ export default function Cart() {
                   <Box>
                     <Text>€ {productWithQuantity.product.price / 100}</Text>
                   </Box>
-                  <ButtonGroup>
-                    <Box>{productWithQuantity.quantity}</Box>
+                  <ButtonGroup
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <Box>
+                      <Text fontWeight={'bold'}>
+                        {productWithQuantity.quantity}
+                      </Text>
+                    </Box>
                     <Button
                       my={5}
                       onClick={() => {
@@ -80,7 +88,10 @@ export default function Cart() {
         <Box mx="auto" my={5}>
           <Box>
             <Text fontSize="1.2rem" fontWeight="bold">
-              TOTALE € {state.total / 100}
+              TOTALE €{' '}
+              <Text as="span" className="total">
+                {state.total / 100}
+              </Text>
             </Text>
           </Box>
           <Box
@@ -91,7 +102,12 @@ export default function Cart() {
             }}
           ></Box>
           <Link as={BrowserLink} to="/checkout">
-            <Button my={5} variant="solid">
+            <Button
+              name="continue"
+              my={5}
+              variant="solid"
+              disabled={state.total === 0}
+            >
               PROCEDI
             </Button>
           </Link>

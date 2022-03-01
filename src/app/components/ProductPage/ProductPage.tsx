@@ -1,4 +1,4 @@
-import { Box, Image, Text, Button, Flex } from '@chakra-ui/react'
+import { Box, Image, Text, Button, Flex, useToast } from '@chakra-ui/react'
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { CartContext } from '../../contexts/Cart'
@@ -12,6 +12,7 @@ export default function ProductPage() {
     return product.slug === productSlug
   })
   const [, dispatch] = React.useContext(CartContext)
+  const toast = useToast()
 
   return (
     <Box my={10} maxW="800px" mx="auto">
@@ -19,8 +20,8 @@ export default function ProductPage() {
         <Box w={{ base: '100%' }} display="block">
           <Image
             rounded={'md'}
-            alt={product.name}
-            src={product.image}
+            alt={product && product.name}
+            src={product && product.image}
             fit={'cover'}
             align={'right'}
             w={'100%'}
@@ -30,18 +31,18 @@ export default function ProductPage() {
         </Box>
         <Box p={2} textAlign="left">
           <Text as="h1" fontSize="2rem" fontWeight="bold" my={5}>
-            {product.name}
+            {product && product.name}
           </Text>
           <Box>
-            <Text>{product.description}</Text>
+            <Text>{product && product.description}</Text>
           </Box>
           <Box py={5}>
             <Box>
-              <Text>€ {product.price / 100}</Text>
+              <Text>€ {product && product.price / 100}</Text>
               <Box
                 dangerouslySetInnerHTML={{
                   __html: `<scalapay-widget locale="it" amount="${
-                    product.price / 100
+                    product && product.price / 100
                   }"></scalapay-widget>`,
                 }}
               ></Box>
@@ -50,6 +51,12 @@ export default function ProductPage() {
               my={5}
               onClick={() => {
                 dispatch({ type: 'add_item', product: product })
+                toast({
+                  title: 'Articolo aggiunto!',
+                  status: 'success',
+                  duration: 9000,
+                  isClosable: true,
+                })
               }}
             >
               Aggiungi al carrello

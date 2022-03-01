@@ -2,7 +2,7 @@
   "version": 2,
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/" },
-    { "source": "/(.*)", "destination": "/app/" }
+    { "source": "/(.*)", "destination": "/app" }
   ],
   "headers": [
     {
